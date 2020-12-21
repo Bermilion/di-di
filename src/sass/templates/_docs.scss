@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.docs {
+	margin-bottom: 24rem;
+
+
+	&__grid {
+		@extend .row;
+		@extend .gap-32;
+	}
+
+	&__block {}
+
+	&__link {
+		display: flex;
+		text-decoration: none;
+
+		@extend .col-4;
+		@extend .col-tp-6;
+		@extend .col-p-12;
+		@extend .mb-8;
+
+		&:hover {
+			.docs__head {
+				color: $primary;
+			}
+		}
+	}
+
+	.icon {
+		margin-right: 8rem;
+		&:before {
+			font-size: 32rem;
+		}
+	}
+
+	&__head {
+		text-decoration: underline;
+		font-size: 16rem;
+		line-height: 24rem;
+		color: $h;
+		transition: all 0.3s;
+	}
+
+	&__hint {
+		display: block;
+		font-size: 12rem;
+		line-height: 20rem;
+		color: $ink;
+	}
+}

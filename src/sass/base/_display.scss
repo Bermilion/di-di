@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/*
+ * Утилиты для изменения свойства display
+ * Здесь генерируются классы:
+ * none,
+ * inline,
+ * inline-block,
+ * block,
+ * flex,
+ * inline-flex
+ *
+ * С префиксами: m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db — абракадабра медиа-запросов.
+ */
+
+@each $display in (none, inline, inline-block, block, flex, inline-flex) {
+
+	@each $mq in (null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db) {
+		@if($mq == null) {
+			.#{ $display } {
+				@include mqs($mq) {
+					display: $display;
+				}
+			}
+		} @else {
+			.#{ $display }-#{ $mq } {
+				@include mqs($mq) {
+					display: $display;
+				}
+			}
+		}
+	}
+}

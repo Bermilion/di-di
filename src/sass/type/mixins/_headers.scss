@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+/*
+ * Миксин для генерации классов заголовков.
+ */
+@mixin h(
+  $mq: null,
+  $size: 48rem,
+  $line-height: 56rem,
+  $family: $headings-font,
+  $weight: bold,
+  $style: normal,
+  $color: false
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @if($color) {
+      color: $color;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+
+
+/*
+ * Вспомогательные миксины для определения стилей каким нибудь элементам вне контекста генерации классов
+ * Здесь основные стили уже определены и смысл миксинов в кастомизации элемента под определённый экран или
+ * применения стилей заголовка но с отклонениями от исходного вида.
+ */
+@mixin h1(
+  $mq: null,
+  $size: 48rem,
+  $line-height: 56rem,
+  $family: $headings-font,
+  $weight: bold,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+@mixin h2(
+  $mq: null,
+  $size: 32rem,
+  $line-height: 40rem,
+  $family: $headings-font,
+  $weight: bold,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+@mixin h3(
+  $mq: null,
+  $size: 24rem,
+  $line-height: 32rem,
+  $family: $headings-font,
+  $weight: bold,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+
+
+@mixin h4(
+  $mq: null,
+  $size: 32rem,
+  $line-height: 40rem,
+  $family: $common-font,
+  $weight: normal,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+@mixin h5(
+  $mq: null,
+  $size: 24rem,
+  $line-height: 32rem,
+  $family: $common-font,
+  $weight: normal,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+@mixin h6(
+  $mq: null,
+  $size: 16rem,
+  $line-height: 24rem,
+  $family: $common-font,
+  $weight: bold,
+  $style: normal
+) {
+
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    font: {
+      family: $family;
+      weight: $weight;
+      style: $style;
+    }
+
+    @content;
+  }
+  @include phone-portrait {
+    hyphens: auto;
+  }
+
+}
+
+
+/*
+ * Миксины для задания групп заголовков
+ * создаёт классы .h1-.h3 и .h4-.h6
+ * или задаёт стили тегам h1-h3 и h4-h6
+ * в зависимости от переменной $class
+ */
+
+// h1, h2, h3
+@mixin old-set-head(
+  $class: false,
+  $headers: (h1: 48, h2: 32, h3: 24),
+  $weight: bold,
+  $style: normal,
+  $family: $headings-font
+) {
+  @each $key, $value in $headers {
+    @if($class) {
+      .#{ $key } {
+        @include h(
+                $family: $family,
+                $size: $value,
+                $line-height: $value + 8,
+                $weight: $weight,
+                $style: $style
+        ) {
+          @content;
+        };
+      }
+    } @else {
+      #{ $key } {
+        @include h(
+                $family: $family,
+                $size: $value,
+                $line-height: $value + 8,
+                $weight: $weight,
+                $style: $style
+        ) {
+          @content;
+        };
+      }
+    }
+  }
+}
+
+// h4, h5, h6
+@mixin young-set-head(
+  $class: false,
+  $headers: (h4: 32, h5: 24, h6: 16),
+  $weight: normal,
+  $style: normal,
+  $family: $common-font
+) {
+  @each $key, $value in $headers {
+    @if($class) {
+      .#{ $key } {
+        @include h(
+                $family: $family,
+                $size: $value,
+                $line-height: $value + 8,
+                $weight: $weight,
+                $style: $style
+        ) {
+          @content;
+        }
+      }
+    } @else {
+      #{ $key } {
+        @include h(
+                $family: $family,
+                $size: $value,
+                $line-height: $value + 8,
+                $weight: $weight,
+                $style: $style
+        ) {
+          @content;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+.advantages {
+  position: relative;
+  @include spacing((
+          null: 80rem 40rem 536rem 40rem,
+          dl: 80rem 40rem 483rem 40rem,
+          dm: 80rem 40rem 429rem 40rem,
+          ds: 80rem 40rem 346rem 40rem,
+          tl: 80rem 24rem 346rem 24rem,
+          tp: 64rem 24rem 272rem 24rem,
+          pl: 64rem 16rem 161rem 16rem,
+          pp: 64rem 16rem 108rem 16rem
+  ), false);
+  background-color: $secondary;
+
+  &__block {
+    position: relative;
+    z-index: 10;
+    background-color: #FAFBFC;
+    @include spacing((
+            null: 64rem 132rem,
+            dm: 64rem 40rem,
+            ds: 48rem 24rem,
+            t: 48rem 24rem,
+            p: 48rem 16rem
+    ), false);
+
+    &__first-grid {
+      margin-bottom: 32rem;
+      @include grid(10);
+      @include grid-pl(2);
+      @include grid-pp(1);
+      @include gap-col(64);
+      @include gap-col(32, tp);
+      @include gap-row(24, tp);
+      @include gap-col(32, pl);
+      @include gap-row(24, p);
+
+      .p {
+        margin-bottom: 0;
+        &:first-child {
+          @include col(4);
+          @include col-tp(10);
+          @include col-pl(2);
+          @include col-pp(1);
+        }
+        &:nth-child(2) {
+          @include col(3);
+          @include col-tp(5);
+          @include col-pl(1);
+          @include col-pp(1);
+        }
+        &:nth-child(3) {
+          @include col(3);
+          @include col-tp(5);
+          @include col-pl(1);
+          @include col-pp(1);
+        }
+      }
+    }
+    &__second-grid {
+      @include grid(4);
+      @include grid-tp(2);
+      @include grid-p(2);
+      @include gap-col(64);
+      @include gap-col(32, ds);
+      @include gap-col(32, tl);
+      @include gap-col(16, p);
+      @include gap-row(24, p);
+      @include gap(32, tp);
+
+      [class^="icon-"] {
+        color: $primary;
+        font-size: 28rem;
+        margin-bottom: 20rem;
+        display: block;
+      }
+      .h6 {
+        font-family: $headings-font;
+        margin-bottom: 8rem;
+      }
+      .p {
+        margin-bottom: 0;
+
+        @include phone {
+          font-size: 12rem;
+          line-height: 16rem;
+        }
+      }
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    object-position: top center;
+    object-fit: cover;
+    width: 100%;
+  }
+}

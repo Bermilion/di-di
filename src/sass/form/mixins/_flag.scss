@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+
+@mixin flag(
+  $postfix: false,
+  $border: $primary,
+  $color: $ink
+) {
+  .flag#{ if($postfix, '_' + $postfix, '') } {
+    &__label {
+      color: $color;
+    }
+
+    &:hover {
+      .flag__check {
+        border-color: grayscale($border);
+      }
+    }
+
+    &__check {
+      border-color: grayscale(transparentize($border, .5));
+      background-color: $w;
+      border: 1rem solid $primary;
+
+      &:before {
+        background-color: $border;
+      }
+    }
+
+    input[type="radio"]:focus ~ .flag__check,
+    input[type="checkbox"]:focus ~ .flag__check {
+      border-color: $border;
+      box-shadow: transparentize($border, 0.75) 0 0 0 2rem;
+    }
+
+    input[type="radio"]:checked ~ .flag__check,
+    input[type="checkbox"]:checked ~ .flag__check {
+      border-color: $border;
+    }
+
+    &.small {
+      input[type="radio"]:checked ~ .flag__check,
+      input[type="checkbox"]:checked ~ .flag__check {
+        background-color: $border;
+
+        &:before {
+          opacity: 0;
+        }
+      }
+    }
+
+    input[type="radio"]:disabled ~ .flag__check,
+    input[type="checkbox"]:disabled ~ .flag__check {
+      border-color: grayscale($border);
+
+      &:before {
+        background-color: grayscale($border);
+      }
+    }
+  }
+}

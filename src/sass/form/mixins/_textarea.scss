@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+@mixin textarea(
+  $postfix: false,
+  $bg: transparent,
+  $border: $hint,
+  $color: $h,
+  $placeholder: lighten($hint, 15%),
+  $border-active: $primary,
+  $border-hover: darken($border-active, 10%),
+  $focus: transparentize($border-active, 0.75)
+) {
+  .textarea#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $border;
+    color: $color;
+    background-color: $bg;
+
+    &::placeholder {
+      color: $placeholder;
+    }
+
+    &:hover {
+      border-color: $border-hover;
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}
+
+
+@mixin textarea-lighten(
+  $postfix: false,
+  $bg: transparent,
+  $border: $hint,
+  $color: $h,
+  $placeholder: lighten($hint, 15%),
+  $border-active: $primary,
+  $border-hover: $border-active,
+  $percent: 10%,
+  $focus: transparentize($border-active, 0.75)
+) {
+  .textarea#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $border;
+    color: $color;
+    background-color: transparent;
+
+    &::placeholder {
+      color: $placeholder;
+    }
+
+    &:hover {
+      border-color: lighten($border-active, $percent);
+      color: lighten($border-active, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}
+
+@mixin textarea-darken(
+  $postfix: false,
+  $bg: transparent,
+  $border: $hint,
+  $color: $h,
+  $placeholder: lighten($hint, 15%),
+  $border-active: $primary,
+  $border-hover: $border-active,
+  $percent: 10%,
+  $focus: transparentize($border-active, 0.75)
+) {
+  .textarea#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $border;
+    color: $color;
+    background-color: transparent;
+
+    &::placeholder {
+      color: $placeholder;
+    }
+
+    &:hover {
+      border-color: darken($border-active, $percent);
+      color: darken($border-active, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}

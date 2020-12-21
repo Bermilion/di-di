@@ -1,0 +1,85 @@
+/*
+ * Файл оглавления
+ *
+ * Подключает остальные компоненты системы стилизации
+ */
+
+// Конфигурация
+@import "config";
+
+// Вспомогательные функции
+@import "functions/strip-units";
+@import "functions/filter-units";
+
+@import "responsibility/media-queries";
+@import "responsibility/rem";
+
+@import "base/reset";
+@import "base/grid/grid";
+@import "base/grid/columns";
+@import "base/grid/gap";
+@import "base/offsets/mixins/wrapper";
+@import "base/offsets/mixins/spacing";
+
+@import "base/offsets/classes/spacing";
+@import "base/offsets/classes/margin";
+@import "base/offsets/classes/padding";
+
+@import "type/mixins/headers";
+@import "type/mixins/paragraph";
+@import "type/mixins/list";
+@import "type/mixins/link";
+@import "type/mixins/sup";
+@import "type/mixins/sub";
+@import "type/mixins/code";
+@import "type/mixins/webkit-scrollbar";
+@import "type/mixins/table";
+
+@import "form/mixins/button";
+@import "form/mixins/ghost";
+@import "form/mixins/input";
+@import "form/mixins/textarea";
+@import "form/mixins/select";
+@import "form/mixins/flag";
+@import "form/mixins/fieldset";
+
+@import "form/button";
+@import "form/ghost";
+@import "form/input";
+@import "form/textarea";
+@import "form/select";
+@import "form/label";
+@import "form/flag";
+@import "form/control-group";
+@import "form/fieldset";
+
+@import "themes/base";
+
+@import "type/body";
+
+@import "templates/base";
+//@import "templates/breabcrumbs";
+////@import "templates/docs";
+////@import "templates/gallery";
+//@import "templates/menu";
+//@import "templates/dropdown";
+//@import "templates/header";
+@import "templates/icons";
+@import "templates/layout";
+//@import "templates/footer";
+//@import "templates/modals";
+//@import "templates/product-category";
+//@import "templates/mobile-call";
+//@import "templates/slider";
+//@import "templates/sub-menu";
+//@import "templates/video";
+//@import "templates/recall-block";
+//@import "templates/cover";
+//@import "templates/advantages";
+//@import "templates/catalog";
+//@import "templates/range";
+//@import "templates/pagination";
+//@import "templates/product";
+//@import "templates/cart";
+//@import "templates/order";
+

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.select {
+	$border-width: 1rem;
+
+	position: relative;
+	padding: 8rem - $border-width 12rem - $border-width;
+	font-size: 16rem;
+	line-height: 24rem;
+	font: {
+		family: $common-font;
+		weight: normal;
+	}
+	text-transform: none;
+	border: $border-width solid;
+	border-radius: $radius;
+	cursor: text;
+	background-color: transparent;
+	transition: color .1s ease-in, border-color .1s ease-in, box-shadow .3s;
+
+	&.big {
+		padding: (12rem - $border-width) (16rem - $border-width);
+	}
+
+	&.small {
+		padding: (8rem - $border-width) (8rem - $border-width);
+		font-size: 12rem;
+		line-height: 16rem;
+	}
+
+	&_un-border {
+		border: none;
+		padding: 0;
+
+	}
+
+}

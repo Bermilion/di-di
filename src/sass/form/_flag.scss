@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.flag {
+	$border-width: 0;
+	$size: 16rem;
+
+	margin-right: 16rem;
+	position: relative;
+
+	&__label,
+	&__check {
+		cursor: pointer;
+		user-select: none;
+	}
+
+	input[type="radio"],
+	input[type="checkbox"] {
+		position: relative;
+		opacity: 0;
+		z-index: 10;
+	}
+
+	input[type="radio"]:checked ~ .flag__check:before,
+	input[type="checkbox"]:checked ~ .flag__check:before {
+		opacity: 1;
+	}
+
+	input[type="radio"]:disabled,
+	input[type="checkbox"]:disabled {
+		opacity: 0;
+	}
+
+	input[type="radio"]:disabled,
+	input[type="radio"]:disabled ~ .flag__label,
+	input[type="radio"]:disabled ~ .flag__check,
+	input[type="checkbox"]:disabled,
+	input[type="checkbox"]:disabled ~ .flag__label,
+	input[type="checkbox"]:disabled ~ .flag__check {
+		cursor: not-allowed;
+	}
+
+	input[type="radio"]:disabled ~ .flag__label,
+	input[type="radio"]:disabled ~ .flag__check,
+	input[type="checkbox"]:disabled ~ .flag__label,
+	input[type="checkbox"]:disabled ~ .flag__check {
+		opacity: 0.5;
+	}
+
+	input[type="radio"] ~ .flag__check,
+	input[type="radio"] ~ .flag__check:before {
+		border-radius: 50%;
+	}
+
+	input[type="checkbox"] ~ .flag__check,
+	input[type="checkbox"] ~ .flag__check:before {
+		border-radius: 2rem;
+	}
+
+	&__check {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $size;
+		height: $size;
+		border: $border-width solid;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: border .3s, box-shadow .3s;
+
+		&:before {
+			content: '';
+			width: $size - 6rem;
+			height: $size - 6rem;
+			opacity: 0;
+			transition: opacity .3s;
+		}
+	}
+
+	&__label {
+		margin-left: $size / 2;
+	}
+
+	&.big {
+		font-size: 24rem;
+		line-height: 32rem;
+
+		.flag__check {
+			width: $size + 8rem;
+			height: $size + 8rem;
+
+			&:before {
+				width: $size;
+				height: $size;
+			}
+		}
+
+		.flag__label {
+			margin-left: $size;
+		}
+	}
+
+	&.small {
+		font-size: 12rem;
+		line-height: 16rem;
+
+		.flag__check {
+			width: $size - 6rem;
+			height: $size - 6rem;
+
+			&:before {
+				width: $size - 6rem;
+				height: $size - 6rem;
+			}
+		}
+
+		.flag__label {
+			margin-left: $size / 4;
+		}
+	}
+}

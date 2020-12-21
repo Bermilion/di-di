@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.gallery {
+  margin-bottom: 24rem;
+
+  &__grid {
+    @extend .row;
+    @extend .gap-16;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    @extend .col-2;
+    @extend .col-tl-3;
+    @extend .col-tp-4;
+    @extend .col-p-12;
+    @extend .pb-8;
+
+    &:hover {
+      img {
+        transform: scale(0.98);
+      }
+    }
+  }
+
+  &__img {
+    transition: all 0.3s;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}

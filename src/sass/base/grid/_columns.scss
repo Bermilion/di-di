@@ -1,0 +1,261 @@
+@charset "UTF-8";
+
+/*
+ *	Миксины для работы с колонками,
+ *	реализованные на CSS Grid Layout
+ */
+
+
+/* Определяют местоположение в сетке ссылаясь на конкретные линии
+ * Если передано одно значение применится к — grid-column-end.
+ * колонка не будет привязана к строке, а просто будет занимать указанное количество колонок.
+ * Пример: @include grid-column(6) — ширина нашей колонки будет равна шести колонкам
+ *
+ * При двух аргументах первое значение будет присвоено — grid-column-start, а второе — grid-column-end
+ * Таким образом можно сдвигать колонку по строке
+ * Пример: @include grid-column(2, 4) — ширина колонки будет 4 колонки и начнется она со второй колонки
+*/
+@mixin grid-column($arguments...) {
+	$col: nth($arguments, 1);
+
+	@if(length($col) > 1) {
+		grid-column: nth($col, 1) / span nth($col, 2);
+	} @else {
+		grid-column: auto / span nth($col, 1);
+	}
+}
+
+// Миксин для генерации классов колонок по горизонтали
+@mixin simple-grid-col($col, $mq) {
+	@include mqs($mq) {
+		grid-column: auto / span $col;
+	}
+}
+
+
+
+/* Определяют местоположение в сетке ссылаясь на конкретные линии
+ * Если передано одно значение применится к — grid-row-start.
+ * колонка будет привязана к строке.
+ * Пример: @include grid-row(2) — колонка будет находиться на второй строке
+ *
+ * При двух аргументах первое значение будет присвоено — grid-row-start, а второе — grid-row-end
+ * Таким образом можно растягивать и сдвигать колонку по строкам
+ * Пример: @include grid-column(2, 4) — колонка будет занимать 4 строки и начнется со второй строкиб.
+*/
+@mixin grid-row($arguments...) {
+	$row: nth($arguments, 1);
+
+	@if(length($row) > 1) {
+		grid-row: #{nth($row, 1) #{'/'} nth($row, 2) span};
+	} @else {
+		grid-row: #{nth($row, 1) #{'/'} 1 span};
+	}
+}
+
+// Миксин для генерации классов колонок по вертикали
+@mixin simple-grid-row($row, $mq) {
+	@include mqs($mq) {
+		grid-row: #{auto #{'/'} $row span};
+	}
+}
+
+
+/* Комбинирует миксин grid-column и grid-row
+ * Пример использования:
+ * @include col(2, 4) — займёт две колонки начиная с четвертой строки
+ * @include col(6) — займёт шесть колонок в общем потоке
+ * @include col(2 3, 1 2) — начиная с первой строки, займёт три колонки и две строки
+ * Опционально миксин принимает @content;
+ *
+ */
+@mixin col($arguments...) {
+
+	@if(length($arguments) > 1) {
+		$col: nth($arguments, 1);
+		$row: nth($arguments, 2);
+
+		@include grid-column($col);
+		@include grid-row($row);
+
+	} @else {
+		$col: nth($arguments, 1);
+
+		@include grid-column($col);
+
+		grid-row: auto / auto span;
+	}
+
+	@content;
+}
+
+
+
+/*
+ * Дополнительные миксины
+ * для адаптивности колонок
+ * Опционально миксины принимают @content;
+ */
+
+// Все мобильные устройства
+@mixin col-m($arguments...) {
+	@include mobile {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Смартфоны в горизонтальной ориентации и планшеты в вертикальной ориентации
+@mixin col-mm($arguments...) {
+	@include mobile-middle {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+
+// Смартфоны
+@mixin col-p($arguments...) {
+	@include phone {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Смартфоны в вертикальной ориентации
+@mixin col-pp($arguments...) {
+	@include phone-portrait {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Смартфоны в альбомной ориентации
+@mixin col-pl($arguments...) {
+	@include phone-landscape {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+
+// Планшеты
+@mixin col-t($arguments...) {
+	@include tablet {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Планшеты в вертикальной ориентации
+@mixin col-tp($arguments...) {
+	@include tablet-portrait() {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Планшеты в альбомной ориентации
+@mixin col-tl($arguments...) {
+	@include tablet-landscape {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+
+
+/* Настольные устройства */
+
+// Все настольные устройства
+@mixin col-d($arguments...) {
+	@include desktop {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Маленькие настольные устройства с экраном до 1279 пкс
+@mixin col-ds($arguments...) {
+	@include desktop-small {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Средние настольные устройства с экраном от 1280 до 1439 пкс
+@mixin col-dm($arguments...) {
+	@include desktop-medium {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Широкоэкранные настольные устройства с экраном от 1440 до 1599 пкс
+@mixin col-dl($arguments...) {
+	@include desktop-large {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Широкоэкранные настольные устройства с экраном от 1600 пкс
+@mixin col-dxl($arguments...) {
+	@include desktop-extra-large {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+
+
+/* Нестрогие и комбинированные запросы */
+
+// Все устройства, кроме смартфонов
+@mixin col-np($arguments...) {
+	@include not-phone {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Планшеты в портретной ориентации и смартфоны
+@mixin col-utl($arguments...) {
+	@include until-tablet-landscape {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Планшеты в альбомной ориентации и настольные устройства
+@mixin col-ftl($arguments...) {
+	@include from-tablet-landscape {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}
+
+// Большие и очень большие настольные устройства
+@mixin col-db($arguments...) {
+	@include desktop-big {
+		@include col($arguments...) {
+			@content
+		}
+	}
+}

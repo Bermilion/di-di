@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.order {
+  @include spacing((
+          null: 80rem 436rem,
+          dxl: 80rem 436rem,
+          dl: 80rem 436rem,
+          dm: 80rem 200rem,
+          ds: 80rem 100rem,
+          t: 64rem 32rem,
+          p: 48rem 16rem
+  ), false);
+  flex-grow: 1;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 24rem;
+    border-bottom: 1rem solid #DFDFDF;
+
+    &__text {
+      @include p;
+      color: $hint;
+      max-width: 151rem;
+      margin-right: 32rem;
+    }
+    &__price {
+      @include h2;
+      color: $secondary-light;
+    }
+  }
+
+  &__grid {
+    margin-top: 24rem;
+    @include grid(2);
+    @include gap-col(32);
+    @include gap-row(16);
+
+    > div {
+      &:nth-child(5), &:nth-child(6), &:nth-child(7) {
+        @include col(2);
+      }
+      @include col-p(2);
+
+      .label {
+        width: 100%;
+        display: block;
+
+        .input, .textarea {
+          width: 100%;
+        }
+      }
+      .flag {
+        display: inline-block;
+
+        @include phone {
+          &:first-child {
+            margin-bottom: 16rem;
+          }
+        }
+      }
+    }
+  }
+  &__footer {
+    margin-top: 32rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      font-weight: bold;
+      color: $ink;
+
+      @include phone {
+        font-size: 14rem;
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

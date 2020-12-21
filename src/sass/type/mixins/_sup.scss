@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+
+// Надстрочный индекс
+@mixin sup() {
+  vertical-align: super;
+  font-size: .5em;
+  line-height: .5em;
+
+  @content;
+}

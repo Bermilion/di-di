@@ -1,0 +1,26 @@
+/bower_components
+/public/media
+/storage/backups/
+/storage/laravel-backups/
+/storage/medialibrary/temp/
+/npm-debug.log
+/vendor
+/node_modules
+.env
+.idea/
+
+### Sass template
+.sass-cache/
+*.css.map
+
+### Windows template
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+logs/

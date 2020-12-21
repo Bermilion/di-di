@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+fieldset,
+.fieldset {
+	border: 1rem solid;
+	padding: 16rem 8rem;
+}
+
+.legend,
+legend {
+	font: {
+		style: italic;
+		weight: bold;
+	}
+}

@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.spacing {
+  @include spacing();
+
+  // использовать как полноценный класс
+  &-small {
+    @include spacing((
+      null: 8rem 200rem,
+      dm: 8rem 100rem,
+      ds: 8rem 32rem,
+      t: 8rem 32rem,
+      p: 8rem
+    ), false);
+  }
+
+  // использовать как полноценный класс
+  &-header {
+    @include spacing((
+      null: 80rem 40rem 0 40rem,
+      dm: 80rem 40rem 0 40rem,
+      ds: 80rem 40rem 0 40rem,
+      t: 64rem 24rem 0 24rem,
+      p: 91rem 16rem 0 16rem
+    ), false);
+  }
+
+  // использовать как полноценный класс
+  &-middle {
+    @include spacing((
+      null: 32rem 200rem,
+      dm: 32rem 100rem,
+      ds: 32rem,
+      t: 32rem,
+      p: 32rem 8rem
+    ), false);
+  }
+
+  // использовать как полноценный класс
+  &-big {
+    @include spacing((
+      null: 120rem 200rem,
+      dm: 120rem 100rem,
+      ds: 120rem 32rem,
+      tl: 120rem 32rem,
+      tp: 60rem 32rem,
+      p: 60rem 8rem
+    ), false);
+  }
+
+  &-cover {
+    @include spacing((
+      null: 160rem 200rem,
+      dm: 160rem 100rem,
+      ds: 160rem  32rem,
+      tl: 160rem 32rem,
+      tp: 60rem 32rem,
+      pl: 60rem 8rem,
+      pp: 120rem 8rem
+    ), false);
+  }
+}

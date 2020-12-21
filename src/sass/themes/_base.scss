@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+
+@mixin type-theme(
+  $bg: $w,
+  $h: $h,
+  $ink: $ink,
+  $hint: $hint
+) {
+  background-color: $bg;
+  color: $ink;
+
+  // Красим заголовки
+  @for $i from 1 through 6 {
+    h#{ $i } {
+      color: $h;
+    }
+  }
+
+  // Красим параграфы и списки
+  p, ul, ol, .label__span {
+    color: $ink;
+  }
+
+  .hint {
+    color: $hint;
+  }
+
+  a {
+    @include link;
+  }
+
+  @content;
+}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/*
+ * Для применения стилей в ссылках
+ */
+@mixin link(
+  $base: $primary,
+  $hover: lighten($base, 15%),
+  $decoration: false
+) {
+  background: transparent;
+  transition: color .1s ease-in;
+  color: $base;
+  text-decoration: none;
+
+  @if($decoration) {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $hover;
+  }
+
+  @content;
+}
+@mixin link-lighten(
+  $base: $b,
+  $hover: $base,
+  $decoration: false,
+  $percent: 15%
+) {
+  transition: color .1s ease-in;
+  color: $base;
+
+  @if($decoration) {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: lighten($hover, $percent);
+  }
+
+  @content;
+}
+@mixin link-darken(
+  $base: $w,
+  $hover: $base,
+  $decoration: false,
+  $percent: 15%
+) {
+  transition: color .1s ease-in;
+  color: $base;
+
+  @if($decoration) {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: darken($hover, 10%);
+  }
+
+  @content;
+}

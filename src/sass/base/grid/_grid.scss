@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+/*
+ * Миксины для работы с сеткой,
+ * реализованные на CSS Grid Layout
+ */
+
+/*
+ * Принимает число и формирует сетку из указанного значения
+ * Пример: @include grid(12) — реализует 12-ти колоночную сетку
+ */
+@mixin grid($columns...) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+}
+
+
+
+/* Адаптивная сетка с изменяющимся количеством колонок в зависимости от девайся
+ * на настольных устройствах 12 колонок
+ * на планшетах 8 колонок
+ * на телефонах 4 колонки
+ */
+@mixin grid-responsive() {
+  display: grid;
+  grid-auto-flow: row;
+
+  @include desktop {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  @include tablet {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+  @include phone {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+
+/*
+ * Дополнительные миксины
+ * для адаптивности сетки
+ */
+
+// Все мобильные устройства
+@mixin grid-m($arguments...) {
+  @include mobile {
+    @include grid($arguments...);
+  }
+}
+
+// Смартфоны в горизонтальной ориентации и планшеты в вертикальной ориентации
+@mixin grid-mm($arguments...) {
+  @include mobile-middle {
+    @include grid($arguments...);
+  }
+}
+
+
+// Смартфоны
+@mixin grid-p($arguments...) {
+  @include phone {
+    @include grid($arguments...);
+  }
+}
+
+// Смартфоны в вертикальной ориентации
+@mixin grid-pp($arguments...) {
+  @include phone-portrait {
+    @include grid($arguments...);
+  }
+}
+
+// Смартфоны в альбомной ориентации
+@mixin grid-pl($arguments...) {
+  @include phone-landscape {
+    @include grid($arguments...);
+  }
+}
+
+
+// Планшеты
+@mixin grid-t($arguments...) {
+  @include tablet {
+    @include grid($arguments...);
+  }
+}
+
+// Планшеты в вертикальной ориентации
+@mixin grid-tp($arguments...) {
+  @include tablet-portrait() {
+    @include grid($arguments...);
+  }
+}
+
+// Планшеты в альбомной ориентации
+@mixin grid-tl($arguments...) {
+  @include tablet-landscape {
+    @include grid($arguments...);
+  }
+}
+
+
+
+/* Настольные устройства */
+
+// Все настольные устройства
+@mixin grid-d($arguments...) {
+  @include desktop {
+    @include grid($arguments...);
+  }
+}
+
+// Маленькие настольные устройства с экраном до 1279 пкс
+@mixin grid-ds($arguments...) {
+  @include desktop-small {
+    @include grid($arguments...);
+  }
+}
+
+// Средние настольные устройства с экраном от 1280 до 1439 пкс
+@mixin grid-dm($arguments...) {
+  @include desktop-medium {
+    @include grid($arguments...);
+  }
+}
+
+// Широкоэкранные настольные устройства с экраном от 1440 до 1599 пкс
+@mixin grid-dl($arguments...) {
+  @include desktop-large {
+    @include grid($arguments...);
+  }
+}
+
+// Широкоэкранные настольные устройства с экраном от 1600 пкс
+@mixin grid-dxl($arguments...) {
+  @include desktop-extra-large {
+    @include grid($arguments...);
+  }
+}
+
+
+
+/* Нестрогие и комбинированные запросы */
+
+// Все устройства, кроме смартфонов
+@mixin grid-np($arguments...) {
+  @include not-phone {
+    @include grid($arguments...);
+  }
+}
+
+// Планшеты в портретной ориентации и смартфоны
+@mixin grid-utl($arguments...) {
+  @include until-tablet-landscape {
+    @include grid($arguments...);
+  }
+}
+
+// Планшеты в альбомной ориентации и настольные устройства
+@mixin grid-ftl($arguments...) {
+  @include from-tablet-landscape {
+    @include grid($arguments...);
+  }
+}
+
+// Большие и очень большие настольные устройства
+@mixin grid-db($arguments...) {
+  @include desktop-big {
+    @include grid($arguments...);
+  }
+}

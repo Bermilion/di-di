@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+
+/*
+ * Миксины списков
+ */
+@mixin list($size: 16rem, $height: 24rem) {
+  padding-left: 16rem;
+  font-size: strip-units($size) + rem;
+  line-height: strip-units($height) + rem;
+
+  li {
+    list-style-type: disc;
+  }
+
+  @content;
+}
+
+
+// Миксин позволяющий добавлять кастомные иконки в список
+@mixin list-icon($icon: '\e90b', $icon-color: inherit, $size: 16rem, $height: 24rem) {
+  padding-left: 16rem;
+  font-size: strip-units($size) + rem;
+  line-height: strip-units($height) + rem;
+
+  li {
+    list-style-type: none;
+    position: relative;
+
+    &:before {
+      font-family: 'icomoon';
+      content: $icon;
+      position: absolute;
+      left: -24rem;
+      color: $icon-color;
+    }
+  }
+
+  @content;
+}

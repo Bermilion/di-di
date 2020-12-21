@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.cover {
+  @extend .spacing;
+
+  &__block {
+    padding: 64rem 160rem;
+    background-image: url('../img/cover/desktop.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 16rem;
+
+    @include desktop-medium {
+      background-image: url('../img/cover/desktop-medium.jpg');
+    }
+    @include desktop-small {
+      background-image: url('../img/cover/desktop-medium.jpg');
+    }
+    @include tablet-landscape {
+      background-image: url('../img/cover/tablet-landscape.jpg');
+    }
+    @include tablet-portrait {
+      background-image: url('../img/cover/tablet-portrait.jpg');
+      padding: 48rem 64rem;
+    }
+    @include phone-landscape {
+      background-image: url('../img/cover/tablet-portrait.jpg');
+    }
+    @include phone-portrait {
+      background-image: url('../img/cover/phone-portrait.jpg');
+    }
+    @include phone {
+      padding: 40rem 24rem;
+    }
+
+    &__header {
+      @extend .h1;
+      max-width: 548rem;
+      margin-bottom: 32rem;
+
+      @include phone {
+        font-size: 32rem !important;
+        line-height: 40rem !important;
+      }
+    }
+    &__p {
+      @extend .p;
+      max-width: 431rem;
+      margin-bottom: 32rem;
+    }
+    &__header, &__p {
+      color: $w;
+    }
+  }
+}

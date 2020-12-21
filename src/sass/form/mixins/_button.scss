@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+
+@mixin button(
+  $postfix: false,
+  $bg: $gradient,
+  $color: $w,
+  $hover-bg: linear-gradient(110.12deg, darken(#8AE68B, 10%) 19.23%, darken(#72B666, 10%) 79.43%),
+  $hover-color: $color,
+  $focus: transparentize(#8AE68B, 0.75)
+) {
+  .button#{ if($postfix, '_' + $postfix, '') } {
+    background: $bg;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      color: $hover-color;
+      background: $hover-bg;
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:focus {
+      background: linear-gradient(110.12deg, grayscale(#8AE68B) 19.23%, grayscale(#72B666) 79.43%);
+      cursor: default;
+    }
+
+    @content;
+  }
+}
+
+@mixin button-lighten(
+  $postfix: false,
+  $bg: $primary,
+  $color: $w,
+  $hover-bg: $bg,
+  $hover-color: $color,
+  $percent: 10,
+  $focus: transparentize($bg, 0.75)
+) {
+  .button#{ if($postfix, '_' + $postfix, '') } {
+    background: $bg;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      color: lighten($hover-color, $percent);
+      background: lighten($hover-bg, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}
+
+@mixin button-darken(
+  $postfix: false,
+  $bg: $primary,
+  $color: $w,
+  $hover-bg: $bg,
+  $hover-color: $color,
+  $percent: 10,
+  $focus: transparentize($bg, 0.75)
+) {
+  .button#{ if($postfix, '_' + $postfix, '') } {
+    background: $bg;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      color: darken($hover-color, $percent);
+      background: darken($hover-bg, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}

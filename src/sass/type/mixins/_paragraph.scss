@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+
+/*
+ * Миксины добавляющие стили параграфа, работают по принципу миксинов заголовков
+ */
+@mixin lead(
+  $mq: null,
+  $size: 24rem,
+  $line-height: 32rem
+) {
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    hyphens: auto;
+
+    @content;
+  }
+}
+
+@mixin p(
+  $mq: null,
+  $size: 16rem,
+  $line-height: 24rem
+) {
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    hyphens: auto;
+
+    @content;
+  }
+}
+
+@mixin hint(
+  $mq: null,
+  $size: 12rem,
+  $line-height: 16rem
+) {
+  @include mqs($mq) {
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+    hyphens: auto;
+
+    @content;
+  }
+}

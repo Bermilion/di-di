@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+
+@mixin ghost(
+  $postfix: false,
+  $color: $primary,
+  $hover-color: darken($color, 10%),
+  $focus: transparentize($color, 0.75)
+) {
+  .ghost#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $color;
+    color: $color;
+    background-color: transparent;
+
+    &:hover {
+      border-color: $hover-color;
+      color: $hover-color;
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    &:disabled, &:disabled:hover, &:disabled:active, &:disabled:focus {
+      border-color: $hint;
+      color: $hint;
+      cursor: not-allowed;
+    }
+
+    @content;
+  }
+}
+
+@mixin ghost-lighten(
+  $postfix: false,
+  $color: $primary,
+  $hover-color: $color,
+  $percent: 10%,
+  $focus: transparentize($color, 0.75)
+) {
+  .ghost#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $color;
+    color: $color;
+    background-color: transparent;
+
+    &:hover {
+      border-color: lighten($hover-color, $percent);
+      color: lighten($hover-color, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}
+
+@mixin ghost-darken(
+  $postfix: false,
+  $color: $primary,
+  $hover-color: $color,
+  $percent: 10%,
+  $focus: transparentize($color, 0.75)
+) {
+  .ghost#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $color;
+    color: $color;
+    background-color: transparent;
+
+    &:hover {
+      border-color: darken($hover-color, $percent);
+      color: darken($hover-color, $percent);
+    }
+
+    &:focus {
+      box-shadow: $focus 0 0 0 2rem;
+    }
+
+    @content;
+  }
+}

@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+/*
+ * Миксины стандартных обёрток контента
+ */
+
+@mixin wrapper-dl() {
+  padding: 0;
+  max-width: 1535rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper-dm() {
+  padding: 0;
+  max-width: 1375rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper() {
+  padding: 0;
+  max-width: 1215rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper-tl() {
+  padding: 0;
+  max-width: 1024rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper-tp() {
+  padding: 0;
+  max-width: 768rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper-pl() {
+  padding: 0;
+  max-width: 480rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}
+@mixin wrapper-pp() {
+  padding: 0;
+  max-width: 320rem;
+  margin: auto;
+
+  @include phone {
+    padding: 0 8rem;
+  }
+}

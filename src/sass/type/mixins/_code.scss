@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+// Миксин для тега «code»
+@mixin code($size: 16rem, $line-height: 24rem) {
+  font-family: monospace;
+  padding: {
+    left: .25em;
+    right: .25em;
+  };
+  border-radius: min(3rem, $radius);
+  font-size: strip-units($size) + rem;
+  line-height: strip-units($line-height) + rem;
+
+  @content;
+}

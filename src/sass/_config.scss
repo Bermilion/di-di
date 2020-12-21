@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/*
+ * Конфигурация оформления
+ */
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=cyrillic');
+
+//@font-face {
+//	font-family: 'Font';
+//	font-style: normal;
+//	font-weight: 700;
+//	src:
+//		local('Font Bold'),
+//		local('font-Bold'),
+//		url('../fonts/font/fontBold.ttf') format('truetype');
+//}
+
+$headings-font: 'PT Sans', sans-serif;
+$common-font: 'PT Sans', sans-serif;
+
+$colors: (
+  #2b2b2b, // 1
+  #323232, // 2
+  #313335, // 3
+  #656262, // 4
+  #afb1b3, // 5
+  #a8c023, // 6
+  #5394ec, // 7
+  #2a8497 // 8
+);
+
+/* Цветовая палитра */
+$primary: #72B666;
+$secondary: #E5F1FE;
+$secondary-light: #3695D9;
+$border-table: #555555;
+$select-table: #EEEEEE;
+$h: #323831;
+$ink: #6B6E6B;
+$hint: #B0B3AF;
+$bg: #FAFAFA;
+$gradient: linear-gradient(110.12deg, #8AE68B 19.23%, #72B666 79.43%);
+$w: white;
+$b: black;
+
+/* Скругление */
+$radius: 8rem;

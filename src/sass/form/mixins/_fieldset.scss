@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@mixin fieldset(
+  $postfix: false,
+  $border: $hint
+) {
+  .fieldset#{ if($postfix, '_' + $postfix, '') } {
+    border-color: $border;
+  }
+}

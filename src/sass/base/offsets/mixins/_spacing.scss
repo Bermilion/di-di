@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/*
+ * Миксины для настройки полей
+ */
+
+@mixin spacing($arguments...) {
+  $preset: (
+    null: 80rem 200rem,
+    dm: 80rem 100rem,
+    ds: 80rem 32rem,
+    tl: 80rem 32rem,
+    tp: 40rem 32rem,
+    p: 40rem 8rem
+  );
+
+  @if(length($arguments) == 1) {
+    $preset: map_merge($preset, nth($arguments, 1));
+  } @else if(length($arguments) > 1) {
+    $preset: nth($arguments, 1);
+  }
+
+  @each $mq, $values in $preset {
+    $units: filter-units($values);
+    @include mqs($mq) {
+      padding: $units;
+    }
+  }
+
+}
+
+@mixin spacing-small($arguments...) {
+  $preset: (
+    null: 20rem 40rem,
+    t: 12rem 24rem,
+    p: 16rem 8rem
+  );
+
+  @if(length($arguments) == 1) {
+    $preset: map_merge($preset, nth($arguments, 1));
+  } @else if(length($arguments) > 1) {
+    $preset: nth($arguments, 1);
+  }
+
+  @each $mq, $values in $preset {
+    $units: filter-units($values);
+    @include mqs($mq) {
+      padding: $units;
+    }
+  }
+
+}

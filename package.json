@@ -1,0 +1,31 @@
+{
+  "name": "ui-kit",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "bermilion <volkov.i@studio2i.ru>",
+  "license": "MIT",
+  "private": true,
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "dev": "gulp watch --env development",
+    "prod": "gulp build --env production"
+  },
+  "dependencies": {
+    "animejs": "^3.1.0",
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-cli": "^2.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-environments": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2"
+  }
+}

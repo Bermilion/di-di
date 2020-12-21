@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+// обрезает единицы измерения
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}

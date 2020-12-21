@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+
+/*
+ * Генерация классов полей
+ * Примеры классов:
+ * .p-32      — поле в 32rem по всем сторонам
+ * .pl-8      — левое поле в 8rem
+ * .pb-ds-16  — нижнее поле в 16rem на маленьких настольных устройства с экраном до 1279 пкс
+ * .py-pl-0   — убирает вертикальное поле на телефонах с альбомной ориентацией
+ */
+
+/* Возможны поля:
+ * all    — все стороны
+ * top    — сверху
+ * right  — справа
+ * bottom — снизу
+ * left   — слева
+ * x      — по горизонтали
+ * y      — по вертикали
+ */
+$padding-sides: all, top, right, bottom, left;
+
+/*
+ * Сокращения медиа-запросов:
+ * null — без медиа запроса
+ * m    — все мобильные устройства
+ * mm   — смартфоны в горизонтальной ориентации и планшеты в вертикальной ориентации
+ * p    — смартфоны
+ * pp   — смартфоны в вертикальной ориентации
+ * pl   — смартфоны в альбомной ориентации
+ * t    — планшеты
+ * tp   — планшеты в вертикальной ориентации
+ * tl   — планшеты в альбомной ориентации
+ * d    — все настольные устройства
+ * ds   — маленькие настольные устройства с экраном до 1279 пкс
+ * dm   — средние настольные устройства с экраном от 1280 до 1439 пкс
+ * dl   — широкоэкранные настольные устройства с экраном от 1440 до 1599 пкс
+ * dxl  — широкоэкранные настольные устройства с экраном от 1600 пкс
+ * np   — все устройства, кроме смартфонов
+ * utl  — планшеты в портретной ориентации и смартфоны
+ * ftl  — планшеты в альбомной ориентации и настольные устройства
+ * db   — большие и очень большие настольные устройства
+ */
+$padding-mqs: null, p, pp, pl, t, tp, tl;
+
+// Список величин отступа
+$padding-offsets: 0, 8, 16, 24, 32, 40, 48, 56, 64;
+
+@each $side in $padding-sides {
+  @each $mq in $padding-mqs {
+    @each $offset in $padding-offsets {
+      $prefix: p;
+
+      @if($side != all) {
+        $prefix: p + str_slice($side, 0, 1);
+      }
+
+      @if($mq == null) {
+        .#{ $prefix }-#{ $offset } {
+          @include mqs($mq) {
+            @if($side == all) {
+              padding: strip-units($offset) + rem;
+            } @else if($side == x) {
+              padding-left: strip-units($offset) + rem;
+              padding-right: strip-units($offset) + rem;
+            } @else if($side == y) {
+              padding-top: strip-units($offset) + rem;
+              padding-bottom: strip-units($offset) + rem;
+            } @else {
+              padding-#{ $side }: strip-units($offset) + rem;
+            }
+          }
+        }
+      } @else {
+        .#{ $prefix }-#{ $mq }-#{ $offset } {
+          @include mqs($mq) {
+            @if($side == all) {
+              padding: strip-units($offset) + rem;
+            } @else if($side == x) {
+              padding-left: strip-units($offset) + rem;
+              padding-right: strip-units($offset) + rem;
+            } @else if($side == y) {
+              padding-top: strip-units($offset) + rem;
+              padding-bottom: strip-units($offset) + rem;
+            } @else {
+              padding-#{ $side }: strip-units($offset) + rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

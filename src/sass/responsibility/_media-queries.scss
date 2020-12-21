@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+
+/*
+ * Медиа-запросы для определения свойств вьюпорта
+ * Смартфоны: все экраны до 767 пкс, от 768 до 1023 пкс в альбомной ориентации
+ * Планшеты: все экраны от 768 до 1023 пкс в портретной ориентации и 1024 пкс
+ * Маленькие десктопы: от 1025 до 1279 пкс
+ * Средние десктопы: от 1280 до 1439 пкс
+ * Большие десктопы: от 1440 до 1599 пкс
+ * Очень большие десктопы: от 1600 пкс
+ */
+
+
+/* Мобильные устройства */
+
+// Все мобильные устройства
+@mixin mobile { @media screen and (max-width: 1024px) { @content } }
+
+// Смартфоны в горизонтальной ориентации и планшеты в вертикальной ориентации
+@mixin mobile-middle {
+	@media
+	screen and (max-width: 1023px) and (orientation: landscape),
+	screen and (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+		@content
+	}
+}
+
+// Смартфоны
+@mixin phone {
+	@media
+	screen and (max-width: 767px),
+	screen and (max-width: 1023px) and (orientation: landscape) {
+		@content
+	}
+}
+
+// Смартфоны в вертикальной ориентации
+@mixin phone-portrait { @media screen and (max-width: 767px) and (orientation: portrait) { @content } }
+
+// Смартфоны в альбомной ориентации
+@mixin phone-landscape { @media screen and (max-width: 1023px) and (orientation: landscape) { @content } }
+
+// Планшеты
+@mixin tablet {
+	@media
+	screen and (min-width: 768px) and (max-width: 1023px) and (orientation: portrait),
+	screen and (width: 1024px) {
+		@content
+	}
+}
+
+// Планшеты в вертикальной ориентации
+@mixin tablet-portrait { @media screen and (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) { @content } }
+
+// Планшеты в альбомной ориентации
+@mixin tablet-landscape { @media screen and (width: 1024px) { @content } }
+
+
+
+
+/* Настольные устройства */
+
+// Все настольные устройства
+@mixin desktop { @media screen and (min-width: 1025px) { @content } }
+
+// Маленькие настольные устройства с экраном до 1279 пкс
+@mixin desktop-small { @media screen and (min-width: 1025px) and (max-width: 1279px) { @content } }
+
+// Средние настольные устройства с экраном от 1280 до 1439 пкс
+@mixin desktop-medium { @media screen and (min-width: 1280px) and (max-width: 1439px) { @content } }
+
+// Широкоэкранные настольные устройства с экраном от 1440 до 1599 пкс
+@mixin desktop-large { @media screen and (min-width: 1440px) and (max-width: 1599px) { @content } }
+
+// Широкоэкранные настольные устройства с экраном от 1600 пкс
+@mixin desktop-extra-large { @media screen and (min-width: 1600px) { @content } }
+
+
+
+
+/* Нестрогие и комбинированные запросы */
+
+// Все устройства, кроме смартфонов
+@mixin not-phone {
+	@media
+	screen and (min-width: 1024px),
+	screen and (min-width: 768px) and (max-width: 1023px) and (orientation: portrait){
+		@content
+	}
+}
+
+// Планшеты в портретной ориентации и смартфоны
+@mixin until-tablet-landscape { @media screen and (max-width: 1023px){ @content } }
+
+// Планшеты в альбомной ориентации и настольные устройства
+@mixin from-tablet-landscape { @media screen and (min-width: 1024px) { @content } }
+
+// Большие и очень большие настольные устройства
+@mixin desktop-big { @media screen and (min-width: 1440px) { @content } }
+
+
+
+
+/* Тип вывода */
+
+// Экран
+@mixin screen { @media screen { @content } }
+
+// Принтер
+@mixin print { @media print { @content } }
+
+
+
+
+/* Ориентации */
+
+// Портретная
+@mixin portrait { @media (orientation: portrait) { @content } }
+
+// Альбомная
+@mixin landscape { @media (orientation: landscape) { @content } }
+
+
+
+
+/* Комбайн медиа запросов по сокращениям */
+
+@mixin mqs($args: (null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db)) {
+	@if(index($args, null)) {
+		@content
+	}
+
+	@if(index($args, m)) {
+		@include mobile {
+			@content
+		}
+	}
+
+	@if(index($args, mm)) {
+		@include mobile-middle {
+			@content
+		}
+	}
+
+	@if(index($args, p)) {
+		@include phone {
+			@content
+		}
+	}
+
+	@if(index($args, pp)) {
+		@include phone-portrait {
+			@content
+		}
+	}
+
+	@if(index($args, pl)) {
+		@include phone-landscape {
+			@content
+		}
+	}
+
+	@if(index($args, t)) {
+		@include tablet {
+			@content
+		}
+	}
+
+	@if(index($args, tl)) {
+		@include tablet-landscape {
+			@content
+		}
+	}
+
+	@if(index($args, tp)) {
+		@include tablet-portrait {
+			@content
+		}
+	}
+
+	@if(index($args, d)) {
+		@include desktop {
+			@content
+		}
+	}
+
+	@if(index($args, ds)) {
+		@include desktop-small {
+			@content
+		}
+	}
+
+	@if(index($args, dm)) {
+		@include desktop-medium {
+			@content
+		}
+	}
+
+	@if(index($args, dl)) {
+		@include desktop-large {
+			@content
+		}
+	}
+
+	@if(index($args, dxl)) {
+		@include desktop-extra-large {
+			@content
+		}
+	}
+
+	@if(index($args, np)) {
+		@include not-phone {
+			@content
+		}
+	}
+
+	@if(index($args, utl)) {
+		@include until-tablet-landscape {
+			@content
+		}
+	}
+
+	@if(index($args, ftl)) {
+		@include from-tablet-landscape {
+			@content
+		}
+	}
+
+	@if(index($args, db)) {
+		@include desktop-big {
+			@content
+		}
+	}
+}

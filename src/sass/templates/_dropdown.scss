@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+
+  &__span {
+    text-decoration: none;
+    color: $h;
+    font-weight: 500;
+
+    @include desktop-small {
+      display: block;
+      text-align: left;
+    }
+    @include mobile {
+      display: block;
+      text-align: left;
+    }
+
+    &.active {
+      color: $primary;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+
+    i {
+      font-size: 10rem;
+
+      &.rotate180 {
+        animation: rotate-center 0.3s ease-in-out both;
+
+      }
+      &.reverse {
+        animation: rotate-center-reverse 0.3s ease-in-out both;
+      }
+    }
+  }
+
+  &-menu {
+    display: none;
+    //background-color: transparentize($secondary, 0.05);
+
+    @include desktop {
+      background-color: $w;
+      border-radius: $radius * 2;
+      padding: 16rem 0 24rem 0;
+      z-index: 100;
+      position: absolute;
+      top: calc(100% + 4rem);
+      min-width: 337rem;
+      max-width: 337rem;
+      box-shadow: 0 24rem 40rem -8rem transparentize($b, 0.95);
+    }
+
+    @include mobile {
+      margin-bottom: 8rem;
+    }
+
+    li {
+      display: block !important;
+      white-space: nowrap;
+      text-align: left;
+
+      span {
+        cursor: default;
+      }
+
+      a, span {
+        display: block;
+        white-space: normal;
+      }
+
+      .sub-menu {
+
+        &__span {
+          text-transform: uppercase;
+          color: $ink;
+          font-size: 12rem;
+          line-height: 20rem;
+          padding: 16rem 32rem 16rem 32rem;
+        }
+
+        &__link {
+          font-size: 16rem;
+          line-height: 24rem;
+          font-weight: normal;
+          text-decoration: none;
+          color: $secondary-light;
+          padding: 0 32rem 8rem 32rem;
+
+          @include desktop-small {
+            color: $b;
+          }
+          @include mobile {
+            color: $b;
+          }
+
+          &:hover {
+            color: $primary;
+          }
+        }
+
+        span.sub-menu__link:hover {
+          color: $secondary-light;
+
+          @include desktop-small {
+            color: $primary;
+          }
+          @include mobile {
+            color: $primary;
+          }
+        }
+      }
+
+      @include desktop-small {
+        .sub-menu__span, .sub-menu__link {
+          padding-left: 16rem;
+        }
+        .sub-menu__link {
+          font-weight: 500;
+          font-size: 16rem;
+          line-height: 24rem;
+        }
+      }
+      @include mobile {
+        .sub-menu__span, .sub-menu__link {
+          padding-left: 16rem;
+        }
+        .sub-menu__link {
+          font-weight: 500;
+          font-size: 16rem;
+          line-height: 24rem;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      left: 100%;
+      top: 0;
+      background-color: #f00 !important;
+    }
+  }
+}
+
+
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-180deg) translateY(1rem);
+    transform: rotate(-180deg) translateY(1rem);
+  }
+}
+@keyframes rotate-center-reverse {
+  0% {
+    -webkit-transform: rotate(-180deg) translateY(1rem);
+    transform: rotate(-180deg) translateY(1rem);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+}

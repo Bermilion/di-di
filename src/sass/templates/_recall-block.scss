@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.recall-block {
+  background-color: $w;
+  @include spacing((
+          null: 128rem 436rem,
+          dxl: 128rem 436rem,
+          dl: 128rem 350rem,
+          dm: 128rem 300rem,
+          ds: 128rem 200rem,
+          tl: 80rem 190rem,
+          tp: 80rem 220rem,
+          pl: 80rem,
+          pp: 80rem 16rem
+  ));
+  @include grid(2);
+  @include grid-utl(1);
+  @include gap-col(64);
+  @include gap-col(0, tp);
+  @include gap-col(0, p);
+  @include gap-row(24, utl);
+
+  &__content {
+    .p {
+      margin-bottom: 0;
+    }
+    //@include col(2 1, 1 2);
+  }
+  &__form {
+    .input, .button {
+      width: 100%;
+    }
+  }
+}

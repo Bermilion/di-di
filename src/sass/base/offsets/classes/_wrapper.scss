@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.wrapper {
+  &-dl {
+    @include wrapper-dl;
+  }
+  &-dm {
+    @include wrapper-dm;
+  }
+  & {
+    @include wrapper;
+  }
+  &-tl {
+    @include wrapper-tl;
+  }
+  &-tp {
+    @include wrapper-tp;
+  }
+  &-pl {
+    @include wrapper-pl;
+  }
+  &-pp {
+    @include wrapper-pp;
+  }
+}

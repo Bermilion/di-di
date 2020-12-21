@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.breadcrumbs {
+	padding: 0 1rem 0 0;
+	margin-top: 0;
+	margin-bottom: 0;
+
+	&__header {
+		@include h2;
+		margin-top: 8rem;
+		margin-bottom: 64rem;
+	}
+
+	&__item {
+		position: relative;
+		display: inline-block;
+		list-style: none;
+		margin-right: 24rem;
+
+		&:before {
+			position: absolute;
+			font-family: 'icomoon';
+			content: '\e90d';
+			right: -18rem;
+			font-size: 10rem;
+			line-height: 10rem;
+			top: 9rem;
+			color: $hint;
+		}
+	}
+
+	&__link {
+		@include p;
+		color: $primary;
+		text-decoration: none;
+
+		&:hover {
+			color: lighten($primary, 15%);
+		}
+	}
+
+	&__span {
+		margin-top: 8rem;
+
+		@extend .h1;
+	}
+}

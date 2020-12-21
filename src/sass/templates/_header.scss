@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $bg;
+	//border-bottom: 1rem solid transparentize(#404F6F, 0.75);
+
+	@include spacing-small((
+		null: 20rem 200rem,
+		dm: 20rem 100rem,
+		ds: 20rem 32rem,
+		t: 12rem 24rem,
+		p: 16rem 16rem 16rem 8rem
+	));
+
+	&__logo {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+		color: $ink;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-grow: 2;
+
+		.nav {
+			flex-grow: 1;
+		}
+
+		@include mobile {
+			display: none;
+		}
+
+		[data-mfp-src="#contacts"] {
+			@include mobile {
+				display: none;
+			}
+		}
+
+		> div {
+			@include desktop {
+				width: 100%;
+			}
+		}
+	}
+
+	&__social-network {
+		margin-right: 80rem;
+
+		@include desktop-small {
+			margin-right: 40rem;
+		}
+
+		&__link {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&__text {
+				display: inline-block;
+				@extend .hint;
+				color: $ink;
+				margin-right: 16rem;
+				max-width: 101rem;
+			}
+			&__icon {
+				display: inline-flex;
+				border-radius: 6rem;
+				background-color: transparentize($primary, 0.8);
+				width: 32rem;
+				height: 32rem;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+
+	&__menu {
+
+		&-button {
+			@include desktop {
+				display: none;
+			}
+
+			.button__text {
+			//	@include phone-portrait {
+			//		display: none;
+			//	}
+				font-size: 16rem;
+				line-height: 24rem;
+			}
+
+			i {
+				font-size: 14rem;
+				line-height: 24rem;
+				margin-right: 4rem;
+			}
+
+			.link {
+				font-weight: bold;
+			}
+		}
+	}
+
+}

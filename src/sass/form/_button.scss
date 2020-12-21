@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.button {
+  position: relative;
+  padding: 8rem 16rem;
+  font-size: 16rem;
+  line-height: 24rem;
+  text-decoration: none;
+  //text-transform: uppercase;
+  font: {
+    family: $headings-font;
+    weight: 700;
+  }
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: background-color .1s ease-in, box-shadow .3s;
+
+  &:active {
+    top: 1rem;
+  }
+
+  &.big {
+    padding: 16rem 24rem;
+  }
+  &.small {
+    padding: 8rem 12rem;
+    font-size: 12rem;
+    line-height: 16rem;
+  }
+}

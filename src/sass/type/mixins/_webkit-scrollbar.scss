@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+
+// Задаёт стилизацию scrollbar'а
+@mixin webkit-scrollbar(
+  $mq: d,
+  $size: 8rem,
+  $piece-bg: #F1F1F1,
+  $piece-margin: 8rem,
+  $piece-radius: 3rem,
+  $thumb-radius: 3rem,
+  $thumb-bg: #C1C1C1,
+  $thumb-bg-hover: #B3B3B3,
+  $thumb-bg-active: #888888,
+  $icons: true,
+  $icon-size: 6px,
+  $icon-color: $w
+) {
+  @include mqs($mq) {
+    &::-webkit-scrollbar {
+      width: min(14px, #{$size});
+      height: min(14px, #{$size});
+
+      &-track {
+        &-piece {
+          background-color: $piece-bg;
+          margin: $piece-margin;
+          border-radius: $piece-radius;
+        }
+      }
+      &-thumb {
+        height: 50rem;
+        background-color: $thumb-bg;
+        border-radius: $thumb-radius;
+        transition: all 0.3s;
+
+        @if($icons) {
+          background-image: url("data:image/svg+xml,%3Csvg width='7' height='7' viewBox='0 0 7 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H7V1H0V0Z' fill='#{ $icon-color }'/%3E%3Cpath d='M0 3H7V4H0V3Z' fill='#{ $icon-color }'/%3E%3Cpath d='M0 6H7V7H0V6Z' fill='#{ $icon-color }'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: $icon-size;
+        }
+
+        &:hover {
+          background-color: $thumb-bg-hover;
+        }
+        &:active {
+          background-color: $thumb-bg-active;
+        }
+      }
+      &-corner {
+        background-color: transparent;
+      }
+      &-resizer {
+        background-color: transparent;
+      }
+
+      @content;
+    }
+  }
+}

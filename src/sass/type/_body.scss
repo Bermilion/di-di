@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+@import "../form/mixins/button";
+@import "../form/mixins/ghost";
+@import "../form/mixins/input";
+@import "../form/mixins/textarea";
+@import "../form/mixins/select";
+@import "../form/mixins/flag";
+@import "../form/mixins/fieldset";
+
+body {
+	font: {
+		size: 16rem;
+		family: $common-font;
+		weight: 400;
+		style: normal;
+	}
+
+	img {
+		vertical-align: middle;
+		line-height: 0;
+	}
+
+	@include old-set-head($class: true) {
+		margin-bottom: 24rem;
+	};
+	@include young-set-head($class: true) {
+		margin-bottom: 24rem;
+	};
+
+	.lead {
+		@include lead {
+			margin-bottom: 24rem;
+		}
+	}
+
+	.p {
+		@include p {
+			//margin-bottom: 24rem;
+		};
+	}
+
+	.list {
+		@include list {
+			margin-bottom: 24rem;
+		}
+
+		&_props {
+			padding-left: 0;
+
+			li {
+				list-style-type: none;
+				@include p;
+
+				span {
+					&:first-child {
+						display: inline-block;
+						margin-right: 16rem;
+					}
+					&:last-child {
+						color: $h;
+					}
+				}
+			}
+		}
+		&_toc {
+			padding-left: 0;
+
+			li {
+				position: relative;
+				list-style-type: none;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				@include p;
+
+				&:before {
+					content: '.......................................................................................................................................................................................................';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 1;
+					overflow: hidden;
+				}
+
+				span {
+					background-color: $bg;
+					position: relative;
+					z-index: 10;
+
+					&:first-child {
+						display: inline-block;
+						margin-right: 16rem;
+						padding-right: 8rem;
+					}
+					&:last-child {
+						display: inline-block;
+						padding-left: 8rem;
+						color: $h;
+						font-weight: 500;
+					}
+				}
+			}
+		}
+		&_dots {
+			//padding-left: 0;
+
+			@include not-phone {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			li {
+				list-style-type: none;
+				position: relative;
+				color: $hint;
+
+				@include not-phone {
+					margin-right: 24rem;
+				}
+
+				.color-secondary {
+					color: $secondary;
+				}
+
+				&:before {
+					position: absolute;
+					top: 0;
+					left: -16rem;
+					content: '\e909';
+					font-family: 'icomoon';
+					color: $secondary;
+				}
+			}
+		}
+	}
+
+	.hint {
+		@include hint;
+	}
+
+	.link {
+		@include link();
+	}
+
+	@include type-theme();
+
+	@include button();
+	@include button($postfix: secondary, $bg: $secondary);
+	@include ghost();
+	@include ghost($postfix: secondary, $color: $secondary);
+	@include input($bg: #F2F2F2, $placeholder: $ink) {
+		border: none;
+
+		&.error {
+			border-color: red;
+			box-shadow: transparentize(red, 0.8) 0 0 0 4rem;
+			&:focus {
+				border-color: red;
+			}
+		}
+	};
+	@include textarea($bg: #F2F2F2, $placeholder: $ink) {
+		border: none;
+
+		&.error {
+			border-color: red;
+			box-shadow: transparentize(red, 0.8) 0 0 0 4rem;
+			&:focus {
+				border-color: red;
+			}
+		}
+	};
+	@include select($bg: #F2F2F2, $placeholder: $ink) {
+		border: none;
+	};
+	@include flag();
+	.flag__label__price {
+		color: $primary;
+	}
+	.flag__hint {
+		@include hint;
+		color: $hint;
+		display: inline-block;
+	}
+	@include fieldset();
+
+	.theme {
+		&-dark {
+			@include type-theme(
+				$bg: nth($colors, 1),
+				$h: $w,
+				$ink: nth($colors, 5),
+				$hint: #999
+			);
+
+			a {
+				@include link-darken;
+			}
+
+			@include input(
+				$border-active: $secondary,
+				$color: $w,
+				$placeholder: darken($hint, 20%)
+			) {
+				&.error {
+					border-color: red;
+					box-shadow: transparentize(red, 0.8) 0 0 0 4rem;
+					&:focus {
+						border-color: red;
+					}
+				}
+			};
+			@include textarea(
+				$border-active: $secondary,
+				$color: $w,
+				$placeholder: darken($hint, 20%)
+			) {
+				&.error {
+					border-color: red;
+					box-shadow: transparentize(red, 0.8) 0 0 0 4rem;
+					&:focus {
+						border-color: red;
+					}
+				}
+			};
+			@include flag($color: nth($colors, 5));
+		}
+	}
+
+	.mb-0 {
+		margin-bottom: 0;
+	}
+	.mb-48 {
+		margin-bottom: 48rem;
+	}
+
+}

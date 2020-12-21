@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+
+/*
+ *	Миксины для задания отступов,
+ *	реализованные на CSS Grid Layout
+ */
+
+/* Отступы по горизонтали и вертикали
+ * Возможные варианты переменной $mq: [null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db]
+ * Пример:
+ * @include gap(16, null) — 16rem отступов по горизонтали и вертикали вне контекста медиа запросов
+ * @include gap(8, pp) — 8rem отступов по горизонтали и вертикали на мобильном с портретной ориентацией
+ */
+@mixin gap($value, $mq: null) {
+  @include mqs($mq) {
+    grid-gap: strip-units($value) + rem;
+  }
+}
+
+/* Отступы по горизонтали
+ * Возможные варианты переменной $mq: [null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db]
+ * Пример:
+ * @include gap-col(16, null) — 16rem отступов по горизонтали вне контекста медиа запросов
+ * @include gap-col(8, pp) — 8rem отступов по горизонтали на мобильном с портретной ориентацией
+ */
+@mixin gap-col($value, $mq: null) {
+  @include mqs($mq) {
+    grid-column-gap: strip-units($value) + rem;
+  }
+}
+
+/* Отступы по вертикали
+ * Возможные варианты переменной $mq: [null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db]
+ * Пример:
+ * @include gap-row(16, null) — 16rem отступов по вертикали вне контекста медиа запросов
+ * @include gap-row(8, pp) — 8rem отступов по вертикали на мобильном с портретной ориентацией
+ */
+@mixin gap-row($value, $mq: null) {
+  @include mqs($mq) {
+    grid-row-gap: strip-units($value) + rem;
+  }
+}
+

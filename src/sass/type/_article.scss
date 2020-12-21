@@ -1,0 +1,256 @@
+@charset "UTF-8";
+
+
+.article {
+
+	// У первого элемента в статье не должно быть отступа сверху
+	:first-child {
+		margin-top: 0;
+	}
+
+	// У последнего элемента в статье не должно быть отступа снизу
+	:last-child {
+		margin-bottom: 0;
+	}
+
+	// Все текстовые блоки внутри статьи ограничены удобным количеством слов
+	h1, h2, h3, h4, h5, h6, p, ul, ol, .gallery, .docs, .hint {
+		max-width: 800rem;
+		margin: {
+			left: auto;
+			right: auto;
+		};
+	}
+
+	// Изображения и таблицы могут быть шире, чем текстовые блоки, но все же ограничены
+	table, .table-wrapper {
+		max-width: 1000rem;
+		margin: {
+			left: auto;
+			right: auto;
+		};
+	}
+	img {
+		max-width: 100%;
+		margin: {
+			left: auto;
+			right: auto;
+		};
+	}
+
+	.slick-dots {
+		max-width: none;
+	}
+
+	.breadcrumbs, .sub-menu {
+		padding-left: 0;
+	}
+
+	.breadcrumbs {
+		margin-bottom: 0;
+	}
+
+	.sub-menu {
+		margin-bottom: 56rem;
+
+		@include tablet {
+			padding-left: 32rem;
+			padding-right: 32rem;
+			margin-left: auto !important;
+			margin-right: auto !important;
+			max-width: calc(800rem + 64rem);
+		}
+		@include phone {
+			padding-left: 8rem;
+			padding-right: 8rem;
+		}
+	}
+
+
+	/* Титульные заголовки */
+
+	// Заголовок первого уровня
+	h1 {
+		@include h1;
+		margin-bottom: 56rem;
+	}
+
+	// Заголовок второго уровня
+	h2 {
+		@include h2;
+		margin: {
+			top: 80rem;
+			bottom: 40rem;
+		}
+	}
+
+	// Заголовок третьего уровня
+	h3 {
+		@include h3;
+		margin: {
+			top: 64rem;
+			bottom: 32rem;
+		}
+	}
+
+
+
+
+	/* Контентные заголовки */
+
+	// Заголовок четвертого уровня
+	h4 {
+		@include h4;
+		margin: {
+			top: 80rem;
+			bottom: 40rem;
+		}
+	}
+
+	// Заголовок пятого уровня
+	h5 {
+		@include h5;
+		margin: {
+			top: 64rem;
+			bottom: 32rem;
+		}
+	}
+
+	// Заголовок шестого уровня
+	h6 {
+		@include h6;
+		margin: {
+			top: 48rem;
+			bottom: 24rem;
+		}
+	}
+
+
+
+
+	/* Параграфы */
+
+	// Лид
+	.lead {
+		@include lead;
+		margin-bottom: 32rem;
+	}
+
+	// Параграф
+	p {
+		@include p;
+		margin-bottom: 24rem;
+	}
+
+	// Маркированный список
+	ul {
+		@include p;
+		padding-left: 16rem;
+		list-style: disc;
+	}
+
+	// Нумерованный список
+	ol {
+		@include p;
+		padding-left: 16rem;
+		list-style: decimal;
+	}
+
+	.hint {
+		@include hint;
+	}
+
+
+
+
+	/* Инлайновые элементы */
+
+	// Жирный текст
+	strong, b {
+		font-weight: bold;
+	}
+
+	// Курсив
+	em {
+		font-style: italic;
+	}
+
+	// Надстрочный индекс
+	sup {
+		@include sup;
+	}
+
+	// Подстрочный индекс
+	sub {
+		@include sub;
+	}
+
+	// Код
+	code {
+		@include code;
+	}
+
+
+
+
+	/* Таблицы */
+
+	table {
+		@include table;
+	}
+
+	.table-wrapper {
+		@include table-wrapper;
+		@include webkit-scrollbar;
+	}
+
+	table, .table-wrapper {
+		margin-bottom: 24rem;
+	}
+
+
+
+
+	/* Вспомогательные классы */
+
+	.text {
+		// Выравнивание влево
+		&-left {
+			text-align: left;
+		}
+
+		// Выравнивание посередине
+		&-center {
+			text-align: center;
+		}
+
+		// Выравнивание вправо
+		&-right {
+			text-align: right;
+		}
+
+		// Без разбивки на строки
+		&-nowrap {
+			white-space: nowrap;
+		}
+	}
+
+	// Без автопереносов слов
+	.manual-hyphens {
+		hyphens: manual;
+	}
+
+	.uppercase {
+		text-transform: uppercase;
+	}
+
+	// Жирный текст
+	.bold {
+		font-weight: bold;
+	}
+
+	// Курсив
+	.italic {
+		font-style: italic;
+	}
+}

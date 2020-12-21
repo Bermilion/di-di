@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.input {
+	position: relative;
+	padding: 8rem 12rem;
+	font-size: 16rem;
+	line-height: 24rem;
+	font: {
+		family: $common-font;
+		weight: normal;
+	}
+	text-transform: none;
+	border: none;
+	border-radius: $radius;
+	cursor: text;
+	background-color: $primary;
+	transition: color .1s ease-in, border-color .1s ease-in, box-shadow .3s;
+
+	&.big {
+		padding: 16rem;
+	}
+
+	&.small {
+		padding: 8rem;
+		font-size: 12rem;
+		line-height: 16rem;
+	}
+}

@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/*
+ * Генерация классов отступов
+ * Примеры классов:
+ * .m-32      — отступ в 32rem по всем сторонам
+ * .ml-8      — левый отступ в 8rem
+ * .mb-ds-16  — нижний отступ в 16rem на маленьких настольных устройства с экраном до 1279 пкс
+ * .my-pl-0   — убирает вертикальный отступ на телефонах с альбомной ориентацией
+ */
+
+/* Возможны стороны:
+ * all    — все стороны
+ * top    — сверху
+ * right  — справа
+ * bottom — снизу
+ * left   — слева
+ * x      — по горизонтали
+ * y      — по вертикали
+ */
+$margin-sides: all, top, right, bottom, left;
+
+/*
+ * Сокращения медиа-запросов:
+ * null — без медиа запроса
+ * m    — все мобильные устройства
+ * mm   — смартфоны в горизонтальной ориентации и планшеты в вертикальной ориентации
+ * p    — смартфоны
+ * pp   — смартфоны в вертикальной ориентации
+ * pl   — смартфоны в альбомной ориентации
+ * t    — планшеты
+ * tp   — планшеты в вертикальной ориентации
+ * tl   — планшеты в альбомной ориентации
+ * d    — все настольные устройства
+ * ds   — маленькие настольные устройства с экраном до 1279 пкс
+ * dm   — средние настольные устройства с экраном от 1280 до 1439 пкс
+ * dl   — широкоэкранные настольные устройства с экраном от 1440 до 1599 пкс
+ * dxl  — широкоэкранные настольные устройства с экраном от 1600 пкс
+ * np   — все устройства, кроме смартфонов
+ * utl  — планшеты в портретной ориентации и смартфоны
+ * ftl  — планшеты в альбомной ориентации и настольные устройства
+ * db   — большие и очень большие настольные устройства
+ */
+$margin-mqs: null, p, pp, pl, t, tp, tl;
+
+// Список величин отступа
+$margin-offsets: 0, 8, 16, 24, 32, 40, 48, 56, 64;
+
+@each $side in $margin-sides {
+  @each $mq in $margin-mqs {
+    @each $offset in $margin-offsets {
+      $prefix: m;
+
+      @if($side != all) {
+        $prefix: m + str_slice($side, 0, 1);
+      }
+
+      @if($mq == null) {
+        .#{ $prefix }-#{ $offset } {
+          @include mqs($mq) {
+            @if($side == all) {
+              margin: strip-units($offset) + rem;
+            } @else if($side == x) {
+              margin-left: strip-units($offset) + rem;
+              margin-right: strip-units($offset) + rem;
+            } @else if($side == y) {
+              margin-top: strip-units($offset) + rem;
+              margin-bottom: strip-units($offset) + rem;
+            } @else {
+              margin-#{ $side }: strip-units($offset) + rem;
+            }
+          }
+        }
+      } @else {
+        .#{ $prefix }-#{ $mq }-#{ $offset } {
+          @include mqs($mq) {
+            @if($side == all) {
+              margin: strip-units($offset) + rem;
+            } @else if($side == x) {
+              margin-left: strip-units($offset) + rem;
+              margin-right: strip-units($offset) + rem;
+            } @else if($side == y) {
+              margin-top: strip-units($offset) + rem;
+              margin-bottom: strip-units($offset) + rem;
+            } @else {
+              margin-#{ $side }: strip-units($offset) + rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

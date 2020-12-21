@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+// Отсеивает значения не являющиеся единицей изменения
+@function filter-units($arr) {
+  $numbers: ();
+
+  @for $i from 1 through length($arr) {
+    $item: nth($arr, $i);
+
+    @if(type_of($item) == number) {
+      $numbers: append($numbers, strip-units($item) + rem);
+    }
+  }
+
+  @return $numbers;
+}

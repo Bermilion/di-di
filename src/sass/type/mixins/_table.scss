@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+
+/* Таблицы */
+
+// Сама таблица
+@mixin table(
+  $size: 16rem,
+  $line-height: 24rem,
+  $th-border-bottom-width: 2rem,
+  $td-border-top-width: 1rem,
+  $td-border-bottom-width: 1rem,
+  $tfoot-border-top-width: 2rem
+) {
+  width: 100%;
+
+  // Все ячейки
+  th, td {
+    padding: 4rem;
+    font-size: strip-units($size) + rem;
+    line-height: strip-units($line-height) + rem;
+  }
+
+  // Заголовочные ячейки
+  th {
+    font-weight: bold;
+    border-bottom: strip-units($th-border-bottom-width) + rem solid;
+  }
+
+  // Обычные ячейки
+  td {
+    border: {
+      top: strip-units($td-border-top-width) + rem solid;
+      bottom: strip-units($td-border-bottom-width) + rem solid;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  // Футер
+  tfoot td {
+    border-top: strip-units($tfoot-border-top-width) + rem solid;
+  }
+
+  @content;
+}
+
+// Обёртка для широкой таблицы
+@mixin table-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @content;
+}

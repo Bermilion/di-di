@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+
+.h1 {
+  @include h1;
+}
+.p {
+  @include p;
+  //margin-bottom: 24rem;
+}
+
+sup {
+  position: relative;
+  top: -5rem;
+  font-size: 0.6em;
+}
+
+.new-block {
+  @include spacing((
+          null: 80rem 56rem,
+          dm: 100rem 50rem,
+          ds: 50rem 32rem,
+          tl: 100rem 32rem,
+          tp: 200rem 32rem,
+          p: 100rem 8rem
+  ));
+
+  &__grid {
+    @include grid(12);
+    @include gap-col(64);
+    @include gap-row(32);
+    @include gap(32, t);
+    @include grid-t(8);
+    @include grid-p(4);
+
+    &__content {
+      background-color: $secondary;
+      @include col-d(7 6);
+      @include col-tl(4 5);
+      @include col-tp(8);
+      @include col-p(4);
+    }
+    &__block {
+      background-color: $primary;
+      @include col-d(6, 1 2);
+      @include col-tl(4);
+      @include col-tp(8);
+      @include col-p(4);
+    }
+    &__text {
+      @include col-d(6);
+      @include col-tl(3, 1 1);
+      @include col-p(2 3, 1 1);
+    }
+  }
+
+}

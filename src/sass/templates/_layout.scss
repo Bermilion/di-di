@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+.layout {
+	min-height: 100%;
+
+	&__main {
+		min-height: 100%;
+		flex-grow: 1;
+		background-color: #FAFCFC;
+		display: flex;
+		flex-direction: column;
+
+		@include phone {
+			padding: 60rem 8rem;
+		}
+
+		.wrapper {
+			@include wrapper;
+		}
+	}
+}
+
+.grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include phone-portrait {
+		flex-wrap: wrap;
+	}
+}
+
+.logo {
+	margin-bottom: 24rem;
+	display: flex;
+	max-width: 140rem;
+
+	img {
+		margin-right: 16rem;
+
+	}
+	span {
+		@include hint;
+		line-height: 1;
+	}
+}
+
+.flex {
+	display: flex;
+
+	i:before {
+		vertical-align: middle;
+	}
+}
+
+.group {
+	display: flex;
+	flex-direction: column;
+	max-width: 320rem;
+
+	.ghost {
+		margin-bottom: 8rem;
+	}
+}
+
+#navigation {
+	display: none;
+
+	@include phone {
+		display: block;
+	}
+}

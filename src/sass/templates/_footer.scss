@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.footer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 16rem;
+	grid-row-gap: 16rem;
+	background-color: $w;
+	@include spacing((
+		null: 8rem 200rem,
+		dm: 8rem 100rem,
+		ds: 8rem 40rem,
+		tl: 8rem 24rem,
+		p: 8rem 16rem
+	));
+
+	@include phone-portrait {
+		grid-template-columns: 1fr;
+	}
+
+	&__company {
+		display: flex;
+		align-items: center;
+	}
+
+	&__developers {
+		display: flex;
+		justify-content: flex-end;
+
+		@include phone-portrait {
+			display: block;
+		}
+	}
+}

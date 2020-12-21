@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+
+// Класс контейнер для колонок
+.grid {
+  @include grid-responsive;
+}
+
+
+
+// Список медиа запросов для генерации классов межколоночных отступов
+$gap-mqs: (null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db);
+
+// Список вариантов отступов
+$gaps: (0, 8, 16, 32, 64);
+
+/* Цикл генерации классов межколоночных отступов по горизонтали
+ * и вертикали в контексте медиа запросов и без
+ * Примеры полученных классов:
+ * .gap-16 — задаст 16rem межколоночного воздуха по горизонтали и вертикали
+ * .gap-col-64 — задаст 64rem межколоночного воздуха по горизонтали
+ * .gap-row-tp-8 — задаст 8rem межколоночного воздуха по вертикали на планшетах портретной ориентации
+ */
+@each $mq in $gap-mqs {
+  @each $gap in $gaps {
+
+    // Разделил проверки на null,
+    // чтобы классы с постфиксом col и row перекрывали классы общих отступов
+    @if($mq == null) {
+      .gap-#{ $gap } {
+        @include gap($gap, $mq);
+      }
+    } @else {
+      .gap-#{ $mq }-#{ $gap } {
+        @include gap($gap, $mq);
+      }
+    }
+
+    // Классы с постфиксом отступа по оси
+    @if($mq == null) {
+      .gap-col-#{ $gap } {
+        @include gap-col($gap, $mq);
+      }
+      .gap-row-#{ $gap } {
+        @include gap-row($gap, $mq);
+      }
+    } @else {
+      .gap-col-#{ $mq }-#{ $gap } {
+        @include gap-col($gap, $mq);
+      }
+      .gap-row-#{ $mq }-#{ $gap } {
+        @include gap-row($gap, $mq);
+      }
+    }
+
+  }
+}
+
+
+
+/*
+ * Список медиа запросов для генерации классов колонок по горизонтали
+ */
+
+// На стационарных компьютерах
+$col-desktop-mqs: (d, ds, dm, dl, dxl, db);
+$cols-desktop: 12;
+
+// На планшетах
+$col-tablet-mqs: (t, tl, tp);
+$cols-tablet: 8;
+
+// На мобильных
+$col-phone-mqs: (p, pl, pp);
+$cols-phone: 4;
+
+
+// Генерация классов для стационарных компьютеров
+@each $mq in $col-desktop-mqs {
+  @for $i from 1 through $cols-desktop {
+    .col-#{ $mq }-#{ $i } {
+      @include simple-grid-col($i, $mq);
+    }
+  }
+}
+
+// Генерация классов для планшетов
+@each $mq in $col-tablet-mqs {
+  @for $i from 1 through $cols-tablet {
+    .col-#{ $mq }-#{ $i } {
+      @include simple-grid-col($i, $mq);
+    }
+  }
+}
+
+// Генерация классов для мобильных
+@each $mq in $col-phone-mqs {
+  @for $i from 1 through $cols-phone {
+    .col-#{ $mq }-#{ $i } {
+      @include simple-grid-col($i, $mq);
+    }
+  }
+}
+
+
+
+// Список медиа запросов для генерации классов колонок по вертикали
+$rows-mqs: (null, m, mm, p, pp, pl, t, tp, tl, d, ds, dm, dl, dxl, np, utl, ftl, db);
+
+// Количество вариантов колонок по вертикали
+$rows: 4;
+
+
+// Генерация классов задающих вертикальную физику колонкам
+@each $mq in $rows-mqs {
+  @for $i from 2 through $rows {
+
+    @if($mq == null) {
+      .row-#{ $i } {
+        @include simple-grid-row($i, $mq);
+      }
+    } @else {
+      .row-#{ $mq }-#{ $i } {
+        @include simple-grid-row($i, $mq);
+      }
+    }
+
+  }
+}
